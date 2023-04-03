@@ -4,7 +4,7 @@ const app = express();
 const weatherRequest = require('./utils/weatherRequest');
 const geoCode = require('./utils/geoCode');
 
-const port = process.env.PORT || 3001;
+const port = 3001;
 
 app.get('/getForecast',(req,res)=>{
 
