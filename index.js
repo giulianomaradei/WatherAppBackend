@@ -18,8 +18,6 @@ app.get('/getForecast',(req,res)=>{
     console.log(address);
 
     geoCode(address,(geoError,geoData)=>{
-        
-
         if(geoError){
             const ans = {
                 error: "something went wrong"
