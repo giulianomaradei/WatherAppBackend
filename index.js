@@ -19,25 +19,29 @@ app.get('/getForecast',(req,res)=>{
 
     geoCode(address,(geoError,geoData)=>{
         
+        let ans = {};
+
         if(geoError){
-            res.send({
+            ans = {
                 error: "something went wrong"
-            })
+            };
         }
         else if(geoData.error){
-            res.send({
+            ans = {
                 error: "place not found"
-            })
+            }
         }
         else{
             const {latitude,longitude,location} = geoData;
             weatherRequest(latitude,longitude,location, (weatherError,weatherData)=>{
-                res.send({
+                ans = {
                     forecast: weatherData
-                })
+                }
             });
         }
         
+        res.send(JSON.stringify(ans));
+
     });
 });
 app.listen(port,()=>{
