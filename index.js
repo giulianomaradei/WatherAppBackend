@@ -4,7 +4,12 @@ const app = express();
 const weatherRequest = require('./utils/weatherRequest');
 const geoCode = require('./utils/geoCode');
 
-const port = 3001;
+const port = process.env.PORT || 3001;
+
+app.use((req,res,next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+});
 
 app.get('/getForecast',(req,res)=>{
 
